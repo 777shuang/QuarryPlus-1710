@@ -36,90 +36,84 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class ProxyClient extends ProxyCommon {
-  private int key = 0;
 
-  static {
-    for (final Key k : Key.values())
-      if (k.name != null) {
-        k.binding = new KeyBinding(k.name, k.id, "key.yoglib");
-        ClientRegistry.registerKeyBinding((KeyBinding) k.binding);
-      }
-  }
+    private int key = 0;
 
-  public ProxyClient() {
-    FMLCommonHandler.instance().bus().register(this);
-  }
-
-  @SubscribeEvent
-  public void keyUpdate(final TickEvent.ClientTickEvent e) {
-    if (e.phase != TickEvent.Phase.START)
-      return;
-    final int prev = this.key;
-    this.key = 0;
-    final GuiScreen currentScreen = Minecraft.getMinecraft().currentScreen;
-    if (currentScreen == null || currentScreen.allowUserInput)
-      for (final Key k : Key.values())
-        if (k.binding instanceof KeyBinding) {
-          if (GameSettings.isKeyDown((KeyBinding) k.binding))
-            this.key |= 1 << k.ordinal();
-        } else
-          switch (k) {
-            case forward:
-              if (GameSettings.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindForward))
-                this.key |= 1 << k.ordinal();
-              break;
-            case jump:
-              if (GameSettings.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindJump))
-                this.key |= 1 << k.ordinal();
-              break;
-            default:
-              break;
-          }
-    if (this.key != prev) {
-      PacketHandler.sendPacketToServer(new YogpstopPacket(this.key));
-      super.setKeys(Minecraft.getMinecraft().thePlayer, this.key);
+    static {
+        for (final Key k : Key.values()) if (k.name != null) {
+            k.binding = new KeyBinding(k.name, k.id, "key.yoglib");
+            ClientRegistry.registerKeyBinding((KeyBinding) k.binding);
+        }
     }
-  }
 
-  @Override
-  public EntityPlayer getPacketPlayer(final INetHandler inh) {
-    if (inh instanceof NetHandlerPlayServer)
-      return ((NetHandlerPlayServer) inh).playerEntity;
-    return Minecraft.getMinecraft().thePlayer;
-  }
+    public ProxyClient() {
+        FMLCommonHandler.instance()
+            .bus()
+            .register(this);
+    }
 
-  @Override
-  public int addNewArmourRendererPrefix(final String s) {
-    return RenderingRegistry.addNewArmourRendererPrefix(s);
-  }
+    @SubscribeEvent
+    public void keyUpdate(final TickEvent.ClientTickEvent e) {
+        if (e.phase != TickEvent.Phase.START) return;
+        final int prev = this.key;
+        this.key = 0;
+        final GuiScreen currentScreen = Minecraft.getMinecraft().currentScreen;
+        if (currentScreen == null || currentScreen.allowUserInput)
+            for (final Key k : Key.values()) if (k.binding instanceof KeyBinding) {
+                if (GameSettings.isKeyDown((KeyBinding) k.binding)) this.key |= 1 << k.ordinal();
+            } else switch (k) {
+            case forward:
+            if (GameSettings.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindForward))
+                this.key |= 1 << k.ordinal();
+            break;
+            case jump:
+            if (GameSettings.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindJump)) this.key |= 1 << k.ordinal();
+            break;
+            default:
+            break;
+            }
+        if (this.key != prev) {
+            PacketHandler.sendPacketToServer(new YogpstopPacket(this.key));
+            super.setKeys(Minecraft.getMinecraft().thePlayer, this.key);
+        }
+    }
 
-  @Override
-  public void removeEntity(final Entity e) {
-    e.worldObj.removeEntity(e);
-    if (e.worldObj.isRemote)
-      ((WorldClient) e.worldObj).removeEntityFromWorld(e.getEntityId());
-  }
+    @Override
+    public EntityPlayer getPacketPlayer(final INetHandler inh) {
+        if (inh instanceof NetHandlerPlayServer) return ((NetHandlerPlayServer) inh).playerEntity;
+        return Minecraft.getMinecraft().thePlayer;
+    }
 
-  @Override
-  public World getClientWorld() {
-    return Minecraft.getMinecraft().theWorld;
-  }
+    @Override
+    public int addNewArmourRendererPrefix(final String s) {
+        return RenderingRegistry.addNewArmourRendererPrefix(s);
+    }
 
-  @Override
-  public Object getGuiController(final int d, final int x, final int y, final int z,
-      final List<String> l) {
-    return new GuiController(d, x, y, z, l);
-  }
+    @Override
+    public void removeEntity(final Entity e) {
+        e.worldObj.removeEntity(e);
+        if (e.worldObj.isRemote) ((WorldClient) e.worldObj).removeEntityFromWorld(e.getEntityId());
+    }
 
-  @Override
-  public void registerTextures() {
-    RenderingRegistry.registerEntityRenderingHandler(EntityLaser.class, RenderEntityLaser.INSTANCE);
-    ClientRegistry.bindTileEntitySpecialRenderer(TileRefinery.class, RenderRefinery.INSTANCE);
-    ClientRegistry.bindTileEntitySpecialRenderer(TileQuarry.class, RenderQuarry.INSTANCE);
-    ClientRegistry.bindTileEntitySpecialRenderer(TileLaser.class, RenderLaser.INSTANCE);
-    RenderingRegistry.registerBlockHandler(RenderRefinery.INSTANCE);
-    RenderingRegistry.registerBlockHandler(RenderLaserBlock.INSTANCE);
-    RenderingRegistry.registerBlockHandler(RenderMarker.INSTANCE);
-    RenderingRegistry.registerBlockHandler(RenderFrame.INSTANCE);
-  }
+    @Override
+    public World getClientWorld() {
+        return Minecraft.getMinecraft().theWorld;
+    }
+
+    @Override
+    public Object getGuiController(final int d, final int x, final int y, final int z, final List<String> l) {
+        return new GuiController(d, x, y, z, l);
+    }
+
+    @Override
+    public void registerTextures() {
+        RenderingRegistry.registerEntityRenderingHandler(EntityLaser.class, RenderEntityLaser.INSTANCE);
+        ClientRegistry.bindTileEntitySpecialRenderer(TileRefinery.class, RenderRefinery.INSTANCE);
+        ClientRegistry.bindTileEntitySpecialRenderer(TileQuarry.class, RenderQuarry.INSTANCE);
+        ClientRegistry.bindTileEntitySpecialRenderer(TileLaser.class, RenderLaser.INSTANCE);
+        RenderingRegistry.registerBlockHandler(RenderRefinery.INSTANCE);
+        RenderingRegistry.registerBlockHandler(RenderLaserBlock.INSTANCE);
+        RenderingRegistry.registerBlockHandler(RenderMarker.INSTANCE);
+        RenderingRegistry.registerBlockHandler(RenderFrame.INSTANCE);
+    }
 }
