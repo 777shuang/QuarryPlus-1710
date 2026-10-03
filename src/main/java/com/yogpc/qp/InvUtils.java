@@ -95,7 +95,7 @@ public class InvUtils {
             if (is.stackSize <= 0) return;
         }
         for (int i = 0; i < pp.size(); i++) {
-            is.stackSize -= ((IPipeTile) pp.get(i)).injectItem(is, true, ppd.get(i));
+            is.stackSize -= ((IPipeTile) pp.get(i)).injectItem(is, true, ppd.get(i), null);
             if (is.stackSize <= 0) return;
         }
     }

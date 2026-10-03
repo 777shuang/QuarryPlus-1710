@@ -115,7 +115,7 @@ public class BlockBreaker extends ADismCBlock {
         if (b == null || b.isAir(w, x, y, z)) return;
         final EntityPlayer player = FakePlayerFactory.getMinecraft((WorldServer) w);
         b.onBlockHarvested(w, tx, ty, tz, meta, player);
-        if (b.removedByPlayer(w, player, tx, ty, tz)) b.onBlockDestroyedByPlayer(w, tx, ty, tz, meta);
+        if (b.removedByPlayer(w, player, tx, ty, tz, false)) b.onBlockDestroyedByPlayer(w, tx, ty, tz, meta);
         else return;
         ArrayList<ItemStack> alis;
         if (b.canSilkHarvest(w, player, tx, ty, tz, meta) && tile.silktouch) {

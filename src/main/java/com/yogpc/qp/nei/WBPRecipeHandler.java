@@ -74,6 +74,7 @@ public class WBPRecipeHandler extends TemplateRecipeHandler {
         return GuiWorkbench.class;
     }
 
+    @Deprecated
     @Override
     public int recipiesPerPage() {
         return 1;

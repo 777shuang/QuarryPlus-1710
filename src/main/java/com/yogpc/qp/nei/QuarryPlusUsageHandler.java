@@ -37,6 +37,7 @@ public final class QuarryPlusUsageHandler extends TemplateRecipeHandler {
         return "nei:textures/gui/recipebg.png";
     }
 
+    @Deprecated
     @Override
     public int recipiesPerPage() {
         return 1;

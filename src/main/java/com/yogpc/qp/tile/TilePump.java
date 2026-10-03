@@ -474,6 +474,7 @@ public class TilePump extends APacketTile implements IFluidHandler, IEnchantable
 
     // ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     private final LinkedList<FluidStack> liquids = new LinkedList<FluidStack>();
+    @SuppressWarnings("unchecked")
     public final LinkedList<String>[] mapping = new LinkedList[ForgeDirection.VALID_DIRECTIONS.length];
 
     {
@@ -532,8 +533,8 @@ public class TilePump extends APacketTile implements IFluidHandler, IEnchantable
         if (fd.ordinal() < 0 || fd.ordinal() >= this.mapping.length) return getTankInfo(ForgeDirection.UP);
         final LinkedList<FluidTankInfo> ret = new LinkedList<FluidTankInfo>();
         if (this.mapping[fd.ordinal()].size() <= 0) {
-            if (this.liquids.size() <= 0) for (final Integer i : FluidRegistry.getRegisteredFluidIDs()
-                .values()) ret.add(new FluidTankInfo(new FluidStack(i.intValue(), 0), Integer.MAX_VALUE));
+            if (this.liquids.size() <= 0) for (final Fluid f : FluidRegistry.getRegisteredFluids()
+                .values()) ret.add(new FluidTankInfo(new FluidStack(f, 0), Integer.MAX_VALUE));
             else for (final FluidStack fs : this.liquids) ret.add(new FluidTankInfo(fs, Integer.MAX_VALUE));
         } else {
             int index;

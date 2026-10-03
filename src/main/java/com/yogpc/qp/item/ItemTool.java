@@ -130,7 +130,7 @@ public class ItemTool extends Item implements IEnchantableItem {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(final ItemStack is, final EntityPlayer ep, final List l, final boolean b) {
+    public void addInformation(final ItemStack is, final EntityPlayer ep, final List<String> l, final boolean b) {
         final NBTTagCompound c = is.getTagCompound();
         if (c != null && c.hasKey("Bname")) {
             l.add(c.getString("Bname"));
@@ -141,7 +141,7 @@ public class ItemTool extends Item implements IEnchantableItem {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(final Item i, final CreativeTabs par2CreativeTabs, final List par3List) {
+    public void getSubItems(final Item i, final CreativeTabs par2CreativeTabs, final List<ItemStack> par3List) {
         par3List.add(new ItemStack(i, 1, 0));
         par3List.add(new ItemStack(i, 1, 1));
         par3List.add(new ItemStack(i, 1, 2));

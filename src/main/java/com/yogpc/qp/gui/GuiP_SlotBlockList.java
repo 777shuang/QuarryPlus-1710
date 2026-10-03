@@ -32,7 +32,7 @@ public class GuiP_SlotBlockList extends GuiSlot {
     public String current;
 
     static {
-        for (final String s : FluidRegistry.getRegisteredFluidIDs()
+        for (final String s : FluidRegistry.getRegisteredFluids()
             .keySet()) blocklist_s.add(s);
     }
 

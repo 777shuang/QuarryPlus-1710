@@ -70,7 +70,7 @@ public class ItemMirror extends Item {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(final Item i, final CreativeTabs par2CreativeTabs, final List par3List) {
+    public void getSubItems(final Item i, final CreativeTabs par2CreativeTabs, final List<ItemStack> par3List) {
         par3List.add(new ItemStack(i, 1, 0));
         par3List.add(new ItemStack(i, 1, 1));
         par3List.add(new ItemStack(i, 1, 2));

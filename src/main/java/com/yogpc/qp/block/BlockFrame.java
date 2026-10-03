@@ -110,7 +110,7 @@ public class BlockFrame extends Block {
 
     @Override
     public void addCollisionBoxesToList(final World world, final int i, final int j, final int k,
-        final AxisAlignedBB axisalignedbb, final List arraylist, final Entity par7Entity) {
+        final AxisAlignedBB axisalignedbb, final List<AxisAlignedBB> arraylist, final Entity par7Entity) {
         setBlockBounds(0.25F, 0.25F, 0.25F, 0.75F, 0.75F, 0.75F);
         super.addCollisionBoxesToList(world, i, j, k, axisalignedbb, arraylist, par7Entity);
 

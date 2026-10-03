@@ -146,7 +146,7 @@ public class ItemArmorElectric extends ItemArmor implements ISpecialArmor, IElec
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(final Item item, final CreativeTabs par2CreativeTabs, final List itemList) {
+    public void getSubItems(final Item item, final CreativeTabs par2CreativeTabs, final List<ItemStack> itemList) {
         final ItemStack charged = new ItemStack(this, 1);
         ElectricItemManager.charge(charged, Double.POSITIVE_INFINITY, getMaxCharge(charged));
         itemList.add(charged);
