@@ -1,6 +1,4 @@
-# Quarry Plus rinsuki modified version
-
-[![Azure DevOps builds](https://img.shields.io/azure-devops/build/rinsuki/9a572861-dbec-4ce7-8ec0-af37fb3aa12b/2)](https://dev.azure.com/rinsuki/QuarryPlus-1710-rinsukimodified/_build?definitionId=2)
+# Quarry Plus modified version
 
 QuarryPlus に、 @rinsuki が改変を加えたバージョンです。
 
@@ -13,22 +11,7 @@ QuarryPlus に、 @rinsuki が改変を加えたバージョンです。
 
 ## ダウンロード
 
-### 安定版
-
-まだ安定してない気がするのでもうちょいまってね
-
-### 不安定版 (スナップショット)
-
-[Azure Pipelinesのビルド一覧](https://dev.azure.com/rinsuki/QuarryPlus-1710-rinsukimodified/_build?definitionId=2) から、
-
-- 希望するビルドを選択
-- 右上のArtifacts → Job
-- Jobフォルダを開く
-- jarフォルダを開く
-- QuarryPlus-modifiedbyrinsuki-1.7.10-2.1.1.jarをクリックすると現れる「…」をクリック
-- Download
-
-でダウンロードできるjarファイルをMinecraftのmodsフォルダに入れれば完了です。
+[Releases](https://github.com/777shuang/QuarryPlus-1710)から最新版をダウンロードしてください。
 
 ## 改変内容
 
@@ -39,32 +22,7 @@ QuarryPlus に、 @rinsuki が改変を加えたバージョンです。
 - QuarryPlus: 作業完了後のフレームが残らないように
 - PumpPlus: QuarryPlusと組み合わせて使う際に採掘範囲外の水流/溶岩流に置くブロックをガラスに変更
 
-以下、オリジナルのREADME (リンク変更なしなので注意)
-
------
-
-Quarry Plus
-===========
-
-Advanced machines for minecraft.  
-[![Build Status](https://travis-ci.org/yogpstop/QuarryPlus.svg?branch=master)](https://travis-ci.org/yogpstop/QuarryPlus)
-[![Codeship Status for yogpstop/QuarryPlus](https://codeship.com/projects/423dabb0-4cff-0132-18c4-0a390dea4bee/status?branch=master)](https://codeship.com/projects/47315)
-[![Build Status](https://api.shippable.com/projects/5464042bc6f0803064f44f35/badge?branchName=master)](https://app.shippable.com/projects/5464042bc6f0803064f44f35/builds/latest)  
-**These are nightly builds. These versions will be cleaned up at fixed intervals.**  
-http://sourceforge.net/projects/yogpstopmcmods/files/Alpha/jar/QuarryPlus/
-
-Supported API
--------------
-
-**All of unofficial build are unsupported**
-
-* BuildCraft ([MC1.7.10]6.1.0 and 6.1.1 are excluded)
-* IC2\_experimental ([MC1.7.2]build 398-465 are excluded)
-* CoFHCore
-
-
-Translation rules
------------------
+# Translation rules
 
 * Translation file must use LF for newline like unix
 * Translation file must use UTF-8 encoding.
